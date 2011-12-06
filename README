@@ -1,0 +1,27 @@
+ZoText
+
+Created 06 December 2011 by Clement Levallois
+
+Contact: twitter: @seinecle
+
+Licence: GNUv3.
+
+
+
+*** What is ZoText for? ***
+
+Zotext is a Java program which allows you to convert your Zotero bibliography into raw text suitable for semantic analysis.
+
+
+
+*** How to use ZoText? ***
+
+1. from Zotero, export your Zotero bibliography (selecting the Zotero rdf format, and including note and files)
+2. build the ZoText.jar from the source files in this ZoTex repo.
+3. Launch Zotero.jar and follow the instructions.
+4. The output is a textfile created in the same repository of your Zotero bibliography. It contains all the raw text from the Zotero bibliography. Each original text is contained on single lines of this new file.
+
+
+
+
+Questions and bug reports: contact me on Twitter @seinecle.
