@@ -4,13 +4,13 @@ Created 06 December 2011 by Clement Levallois
 
 Contact: twitter: @seinecle
 
-Licence: GNUv3.
+Licence: GPLv3
 
 
 
 *** What is ZoText for? ***
 
-Zotext is a Java program which allows you to convert your Zotero bibliography into raw text suitable for semantic analysis.
+Zotext is a Java program to convert a Zotero bibliography into raw text suitable for semantic analysis.
 
 
 
@@ -21,6 +21,16 @@ Zotext is a Java program which allows you to convert your Zotero bibliography in
 3. Launch Zotero.jar and follow the instructions.
 4. The output is a textfile created in the same repository of your Zotero bibliography. It contains all the raw text from the Zotero bibliography. Each original text is contained on single lines of this new file.
 
+
+*** features ***
+- process pdf and html docs
+- filters stopwords with a customized list provided by the user
+- detects duplicate documents by their names and / or by content analysis, and optionally removes them
+
+
+*** note on the "detect duplicate documents by content analysis"
+For each document, the longest line in the document is recorded and added to a list.
+For each new document processed, its longest line is compared to the list of longest lines. If there is a match, the document is left out.
 
 
 
