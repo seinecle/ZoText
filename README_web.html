@@ -1,0 +1,45 @@
+<h1>ZoText</h1>
+<p>Created 06 December 2011 by Clement Levallois</p>
+
+<p>Contact: twitter: @seinecle</p>
+
+<p>Licence: GPLv3</p>
+
+
+<br>
+<h3>*** What is ZoText for? ***</h3>
+
+<p>Zotext is a Java program to convert a Zotero bibliography into raw text suitable for semantic analysis.</p>
+
+
+<br>
+<h3>*** How to use ZoText? ***</h3>
+
+<h4>1. from Zotero, export your Zotero bibliography </h4>
+<p>=> from within Zotero, select the cog wheel icon.</p>
+<p>=> select "Export"</p>
+<p>=> select the Zotero rdf format, and including note and files</p>
+
+<h4>2. Launch ZoText with the "launch" button on the webpage and follow the instructions.</h4>
+
+<h4>3. The output is a textfile created in the same repository of your Zotero bibliography.</h4>
+<p>It contains all the raw text from the Zotero bibliography. Each original text is contained on single lines of this new file.</p>
+
+
+<br>
+<h3>*** features ***</h3>
+
+<p>- process pdf and html docs</p>
+<p>- filters stopwords with a customized list provided by the user</p>
+<p>- detects duplicate documents by their names and / or by content analysis, and optionally removes them</p>
+
+
+<br>
+<h3>*** note on the "detect duplicate documents by content analysis"</h3>
+
+<p>For each document, the longest line in the document is recorded and added to a list.</p>
+<p>For each new document processed, its longest line is compared to the list of longest lines. If there is a match, the document is left out.</p>
+
+
+
+<h3>Questions and bug reports: contact me on Twitter @seinecle</h3>

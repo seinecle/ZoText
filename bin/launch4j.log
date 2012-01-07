@@ -1,0 +1,51 @@
+
+
+CmdLine:	C:\Users\C. Levallois\Documents\NetBeansProjects\ZoText\bin\ZoText.exe --l4j-debug
+WOW64:		yes
+Bundled JRE:	C:\Program Files\Java\jre6
+Check launcher:	C:\Program Files\Java\jre6\bin\javaw.exe (OK)
+Add classpath:	lib\commons-io-2.1.jar
+Add classpath:	lib\commons-lang3-3.0.1.jar
+Add classpath:	lib\guava-10.0.1.jar
+Add classpath:	lib\Boilerpipe_short.jar
+Add classpath:	lib\xercesImpl.jar
+Add classpath:	lib\nekohtml.jar
+Add classpath:	lib\pdfbox-app-1.6.0.jar
+Launcher:	C:\Program Files\Java\jre6\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\C. Levallois\Documents\NetBeansProjects\ZoText\bin\ZoText.exe;lib\commons-io-2.1.jar;lib\commons-lang3-3.0.1.jar;lib\guava-10.0.1.jar;lib\Boilerpipe_short.jar;lib\xercesImpl.jar;lib\nekohtml.jar;lib\pdfbox-app-1.6.0.jar" ZoText.ZoTextGUI
+Args length:	258/32768 chars
+Exit code:	0
+
+
+CmdLine:	C:\Users\C. Levallois\Documents\NetBeansProjects\ZoText\bin\ZoText.exe --l4j-debug
+WOW64:		yes
+Bundled JRE:	C:\Program Files\Java\jre6
+Check launcher:	C:\Program Files\Java\jre6\bin\javaw.exe (OK)
+Add classpath:	lib\commons-io-2.1.jar
+Add classpath:	lib\commons-lang3-3.0.1.jar
+Add classpath:	lib\guava-10.0.1.jar
+Add classpath:	lib\Boilerpipe_short.jar
+Add classpath:	lib\xercesImpl.jar
+Add classpath:	lib\nekohtml.jar
+Add classpath:	lib\pdfbox-app-1.6.0.jar
+Launcher:	C:\Program Files\Java\jre6\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\C. Levallois\Documents\NetBeansProjects\ZoText\bin\ZoText.exe;lib\commons-io-2.1.jar;lib\commons-lang3-3.0.1.jar;lib\guava-10.0.1.jar;lib\Boilerpipe_short.jar;lib\xercesImpl.jar;lib\nekohtml.jar;lib\pdfbox-app-1.6.0.jar" ZoText.ZoTextGUI
+Args length:	258/32768 chars
+Exit code:	259
+
+
+CmdLine:	C:\Users\C. Levallois\Documents\NetBeansProjects\ZoText\bin\ZoText.exe --l4j-debug
+WOW64:		yes
+Bundled JRE:	C:\Program Files\Java\jre6
+Check launcher:	C:\Program Files\Java\jre6\bin\javaw.exe (OK)
+Add classpath:	lib\commons-io-2.1.jar
+Add classpath:	lib\commons-lang3-3.0.1.jar
+Add classpath:	lib\guava-10.0.1.jar
+Add classpath:	lib\Boilerpipe_short.jar
+Add classpath:	lib\xercesImpl.jar
+Add classpath:	lib\nekohtml.jar
+Add classpath:	lib\pdfbox-app-1.6.0.jar
+Launcher:	C:\Program Files\Java\jre6\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\C. Levallois\Documents\NetBeansProjects\ZoText\bin\ZoText.exe;lib\commons-io-2.1.jar;lib\commons-lang3-3.0.1.jar;lib\guava-10.0.1.jar;lib\Boilerpipe_short.jar;lib\xercesImpl.jar;lib\nekohtml.jar;lib\pdfbox-app-1.6.0.jar" ZoText.ZoTextGUI
+Args length:	258/32768 chars
+Exit code:	259
