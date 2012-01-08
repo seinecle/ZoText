@@ -10,8 +10,8 @@ package ZoText;
  */
 
 import java.io.IOException;
-import org.apache.pdfbox.util.PDFTextStripper;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
 
 public class PdfExtractor {
     public final String currFile;
