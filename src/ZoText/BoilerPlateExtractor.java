@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author C. Levallois
+ * @author C. Levallois ,
  */
 public class BoilerPlateExtractor{
     
