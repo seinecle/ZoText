@@ -4,7 +4,7 @@
  */
 
 /*
- * ZoTextGUI.java
+ * Screen_1.java
  *
  * Created on Dec 8, 2011, 11:14:45 PM
  */
@@ -22,7 +22,7 @@ import org.xml.sax.SAXException;
  *
  * @author C. Levallois
  */
-public class ZoTextGUI extends javax.swing.JFrame {
+public class Screen_1 extends javax.swing.JFrame {
 
     private boolean countHTML = false;
     private boolean countPDF = false;
@@ -36,8 +36,8 @@ public class ZoTextGUI extends javax.swing.JFrame {
     private boolean ChooseAbstractsYes = false;
     private boolean ChooseAttachmentsYes = false;
     private boolean ChooseTitlesYes = false;
-    /** Creates new form ZoTextGUI */
-    public ZoTextGUI() {
+    /** Creates new form Screen_1 */
+    public Screen_1() {
         initComponents();
     }
 
@@ -81,7 +81,7 @@ public class ZoTextGUI extends javax.swing.JFrame {
 
         jLabel2.setText("<html><i>Your Zotero bibliography is a file called \"My Library.rdf\" located on your computer. It was created when you exported your Zotero bibliography. If you did not export it yet, close this application and follow <a href=\"http://www.zotero.org/support/kb/exporting\">these steps</a> then come back here.</i></html>");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("ZoText");
 
         jLabel4.setText("<html><b>2.</b> Select the type of textual content you want to extract from it</html>");
@@ -234,7 +234,7 @@ public class ZoTextGUI extends javax.swing.JFrame {
         System.out.println("openButton clicked");
     }
     JFileChooser chooser = new JFileChooser();
-    chooser.setCurrentDirectory(new java.io.File("D:\\Docs Pro Clement\\E-humanities\\TextMining\\Exported Items\\"));
+    chooser.setCurrentDirectory(new java.io.File("D:\\Docs Pro Clement\\Writing\\Article Neuromarketing\\analysis\\Exported Items\\"));
     chooser.setDialogTitle("Choose the file created by the Zotero export: \"My Library.rdf\"");
     //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     chooser.setAcceptAllFileFilterUsed(false);
@@ -332,13 +332,13 @@ public class ZoTextGUI extends javax.swing.JFrame {
                 
                 Mainthread.main(args);
                 } catch (IOException ex) {
-                    Logger.getLogger(ZoTextGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Screen_1.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SAXException ex) {
-                    Logger.getLogger(ZoTextGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Screen_1.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParserConfigurationException ex) {
-                    Logger.getLogger(ZoTextGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Screen_1.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (XPathExpressionException ex) {
-                    Logger.getLogger(ZoTextGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Screen_1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }
@@ -370,13 +370,13 @@ public class ZoTextGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ZoTextGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Screen_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ZoTextGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Screen_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ZoTextGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Screen_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ZoTextGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Screen_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -384,7 +384,7 @@ public class ZoTextGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new ZoTextGUI().setVisible(true);
+                new Screen_1().setVisible(true);
             }
         });
     }

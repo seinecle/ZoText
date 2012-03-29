@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -12,23 +12,23 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 import java.awt.Component;
-import java.util.List;
-import org.xml.sax.SAXException;
-import org.w3c.dom.Document;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPathExpressionException;
 import org.apache.commons.io.IOUtils;
+import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 public class Mainthread {
 
@@ -40,7 +40,8 @@ public class Mainthread {
     static String stopWordsFile;
     //static String stopWordsFile = "D:/Docs Pro Clement/Writing/Article Neuromarketing/analysis/stopwords.txt";
     static ArrayList<String> badLines = new ArrayList();
-    static HashSet<ArrayList> incipit = new HashSet();
+    static HashSet<String> incipit = new HashSet();
+    static HashSet<String> badLinesSet = new HashSet();
     static HashSet<String> longestLines = new HashSet();
     static String wkDir;
     static String uniqueFileNames;
@@ -80,7 +81,8 @@ public class Mainthread {
             System.out.println("attachmenents included: "+attachmentsIncluded);
 
             if (!"null".equals(stopWordsFile)) {
-                badLines = Mainthread.buildStopWordList();
+                //badLines = Mainthread.buildStopWordList();
+                badLinesSet.addAll(Mainthread.buildStopWordSet());
             }
 
             readMasterList();
@@ -105,6 +107,16 @@ public class Mainthread {
     }
 
     public static ArrayList buildStopWordList() throws IOException {
+
+        //ConvertStreamToString cs = new ConvertStreamToString();
+        InputStream is = new FileInputStream(stopWordsFile);
+        String s = IOUtils.toString(is, "UTF-8");
+        //String s = cs.convertStreamToString(new FileInputStream(Mainthread.stopWordsFile));
+        return new ArrayList(Arrays.asList(s.split("\r\n")));
+
+    }
+
+    public static ArrayList buildStopWordSet() throws IOException {
 
         //ConvertStreamToString cs = new ConvertStreamToString();
         InputStream is = new FileInputStream(stopWordsFile);

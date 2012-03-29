@@ -10,9 +10,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -26,7 +23,8 @@ public class WorkerThread implements Runnable {
     String currMonthHere;
     private int countLines;
     private boolean newItemInCorpus;
-    ArrayList<String> incipitLines = new ArrayList();
+    StringBuilder incipitLines = new StringBuilder();
+    StringBuilder filteredText = new StringBuilder();
     private int lineSize;
     private int maxlineSize = 0;
     private int currmaxlineSize;
@@ -43,7 +41,7 @@ public class WorkerThread implements Runnable {
     @Override
     public void run() {
         try {
-            extractedText = extractedText.replace("&", " and ");
+           extractedText = extractedText.replace("&", " and ");
             extractedText = extractedText.replace("<", " ");
             extractedText = extractedText.replace(">", " ");
             extractedText = extractedText.replaceAll("\n", "thisisanendofsentence");
@@ -57,7 +55,7 @@ public class WorkerThread implements Runnable {
 
 
 
-            String filteredText = "";
+
 
             //ConvertStreamToString cs = new ConvertStreamToString();
             //String s = cs.convertStreamToString(new FileInputStream(Mainthread.XMLOutput));
@@ -65,47 +63,60 @@ public class WorkerThread implements Runnable {
             ArrayList<String> lines = new ArrayList(Arrays.asList(extractedText.split("\r?\n")));
             //s = null;
             Iterator<String> it1 = lines.iterator();
-            boolean badLineDetected;
-
+            //boolean badLineDetected;
+            countLines = 0;
             while (it1.hasNext()) {
-                countLines++;
-                String currBadLine = null;
-                String currLine = it1.next();
-
-                if (!"null".equals(Mainthread.stopWordsFile)) {
-                    Iterator<String> it2 = Mainthread.badLines.iterator();
-                    badLineDetected = false;
-
-                    while (it2.hasNext()) {
-                        currBadLine = it2.next();
-                        //System.out.println(currBadLine);
-                        //if ("Customer Centric Thoughts from the World’s Sharpest Minds in Marketing, Strategy, Innovation and Design".equals(currBadLine)){System.out.println("yes");}
-
-                        //Regex part
-                        Pattern r = Pattern.compile(currBadLine, Pattern.CASE_INSENSITIVE);
-                        Matcher m = r.matcher(currLine);
-
-                        if (m.find()) {
-                            currLine = currLine.replaceAll(currBadLine, " ");
-                            //System.out.println(currBadLine);
-
-                        }
-
-                    }
+                if (ParserXML.counter > 200) {
+                    break;
                 }
-                currLine = StringUtils.strip(currLine);
+                countLines++;
+                String currLine = it1.next().trim();
+
+                int indexEndString = Math.min(currLine.length(), 50);
+
+                if(currLine.length()>20)
+//                
+                {
+                    System.out.println(currLine);
+            }
+                
+                if (!"null".equals(Mainthread.stopWordsFile) & Mainthread.badLinesSet.contains(currLine)) {
+
+                        continue;
+                    }
+//
+//                    Iterator<String> it2 = Mainthread.badLines.iterator();
+//                    //badLineDetected = false;
+//
+//                    while (it2.hasNext()) {
+//                        currBadLine = it2.next();
+//                        //System.out.println(currBadLine);
+//                        //if ("Customer Centric Thoughts from the World’s Sharpest Minds in Marketing, Strategy, Innovation and Design".equals(currBadLine)){System.out.println("yes");}
+//
+//                        //Regex part
+//                        Pattern r = Pattern.compile(currBadLine, Pattern.CASE_INSENSITIVE);
+//                        Matcher m = r.matcher(currLine);
+//
+//                        if (m.find()) {
+//                            currLine = currLine.replaceAll(currBadLine, " ");
+//                            //System.out.println(currBadLine);
+//
+//                        }
+//
+//                    }
+
                 lineSize = currLine.length();
                 currmaxlineSize = maxlineSize;
                 maxlineSize = Math.max(maxlineSize, lineSize);
                 if (currmaxlineSize != maxlineSize) {
-                    longestString = currLine;
+                    longestString = currLine.substring(0, indexEndString);
                 }
 
-                filteredText = filteredText.concat(currLine);
-                incipitLines.add(currLine);
-                if (countLines == 3) {
+                filteredText = filteredText.append(currLine);
+                incipitLines.append(currLine.substring(0, indexEndString));
+                if (countLines == 2) {
 
-                    newItemInCorpus = Mainthread.incipit.add(incipitLines);
+                    newItemInCorpus = Mainthread.incipit.add(incipitLines.toString().substring(0, indexEndString));
 
                     if (!newItemInCorpus) {
                         return;
@@ -115,7 +126,7 @@ public class WorkerThread implements Runnable {
 
 
                 }
-                countLines = 0;
+
 
 
             }
@@ -135,7 +146,9 @@ public class WorkerThread implements Runnable {
 
 
 
-            synchronized(Mainthread.queue){Mainthread.queue.add(filteredText);}
+            synchronized (Mainthread.queue) {
+                Mainthread.queue.add(filteredText.toString());
+            }
             Mainthread.emptyQueue();
 
 //            synchronized(Mainthread.output){
@@ -146,10 +159,5 @@ public class WorkerThread implements Runnable {
         } catch (IOException ex) {
             Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
-
-
     }
 }

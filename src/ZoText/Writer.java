@@ -19,6 +19,7 @@ public class Writer extends Thread{
 
     static ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue();
     
+    @Override
 public void run(){
         BufferedWriter bf = null;
         try {

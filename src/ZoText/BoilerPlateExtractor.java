@@ -4,6 +4,7 @@
  */
 package ZoText;
 
+import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.DefaultExtractor;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -34,7 +35,7 @@ BoilerPlateExtractor(String file) {
 }
 
 
-public String run() {
+public String run() throws BoilerpipeProcessingException {
         try {
             String folderNum = currFile.substring(currFile.indexOf("/")+1, currFile.lastIndexOf("/"));
             //System.out.println(folderNum);
@@ -43,6 +44,8 @@ public String run() {
             BufferedReader input = new BufferedReader(new FileReader(Mainthread.wkDir+"//" + currFile));
             //String txt = IOUtils.toString(is, "UTF-8");
             extractedText = DefaultExtractor.INSTANCE.getText(input);
+            
+
             input.close();
 
             }catch(java.io.FileNotFoundException e){return extractedText="";}
