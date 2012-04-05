@@ -28,8 +28,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class ParserXML extends DefaultHandler {
 
-    public String tempVal;
-    private String typeDoc;
     int numberOfThreads = Runtime.getRuntime().availableProcessors();
     ExecutorService pool = Executors.newFixedThreadPool(numberOfThreads);
     public String itemType;
@@ -40,7 +38,6 @@ public class ParserXML extends DefaultHandler {
     private boolean newAbstract;
     private boolean newAttachment = false;
     private boolean newIsPartOf;
-    StringBuilder test;
     String currItemType;
     String currYearHere;
     String currMonthHere;
@@ -49,10 +46,18 @@ public class ParserXML extends DefaultHandler {
     private int currLineSize;
     private int maxLineSize = 0;
     private boolean newLongestSentence;
+    private boolean newSubject;
+    private boolean newAuthor;
+    private boolean newDocument;
+    private StringBuilder subjectBuilder;
+    private StringBuilder documentBuilder;
+    private StringBuilder titleBuilder;
+    private StringBuilder attachmentBuilder;
+    private StringBuilder authorBuilder;
+    private StringBuilder abstractBuilder;
 
     public ParserXML(InputSource toBeParsed, String type) throws IOException {
 
-        typeDoc = type;
 
         parseDocument(toBeParsed);
         //printData();
@@ -60,11 +65,6 @@ public class ParserXML extends DefaultHandler {
 
 
 
-    }
-
-    public String getTypeDoc() {
-
-        return typeDoc;
     }
 
     private void parseDocument(InputSource toBeParsed) throws IOException {
@@ -93,34 +93,53 @@ public class ParserXML extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
-        tempVal = null;
-        test = new StringBuilder();
 
-        if (qName.matches("dc:title") && "true".equals(Mainthread.titlesIncluded) && !newAttachment && !newIsPartOf) {
+
+        if (qName.matches("dc:title") & Mainthread.titlesIncluded && !newAttachment && !newIsPartOf) {
             newTitle = true;
+            titleBuilder = new StringBuilder();
 
         }
 
 
         if (qName.matches("z:Attachment")) {
             newAttachment = true;
+            attachmentBuilder = new StringBuilder();
+
+        }
+
+        if (qName.contains("bib:") & !newIsPartOf & !qName.contains("authors")) {
+            documentBuilder = new StringBuilder();
+            newDocument = true;
+
+        }
+
+        if (qName.matches("dc:subject")) {
+            subjectBuilder = new StringBuilder();
+            newSubject = true;
+        }
+
+        if (qName.matches("foaf:surname")) {
+            authorBuilder = new StringBuilder();
+            newAuthor = true;
 
         }
 
 
-        if (qName.matches("dcterms:isPartOf")) {
+        if (qName.matches("dcterms:isPartOf") & Mainthread.subjectsIncluded) {
             newIsPartOf = true;
 
         }
 
 
-        if (qName.matches("dcterms:abstract") && "true".equals(Mainthread.abstractsIncluded)) {
+        if (qName.matches("dcterms:abstract") & Mainthread.abstractsIncluded) {
+            abstractBuilder = new StringBuilder();
             newAbstract = true;
         }
 
 
 
-        if (qName.equalsIgnoreCase("rdf:resource") && attributes.getQName(0).equalsIgnoreCase("rdf:resource") && "true".equals(Mainthread.attachmentsIncluded)) {
+        if (qName.equalsIgnoreCase("rdf:resource") && attributes.getQName(0).equalsIgnoreCase("rdf:resource") && Mainthread.attachmentsIncluded) {
 
             try {
 
@@ -137,14 +156,14 @@ public class ParserXML extends DefaultHandler {
                 boolean isHTML = fileName.contains(".html");
                 boolean isPDF = fileName.contains(".pdf");
                 //if (isHTML) pool.execute(new BoilerPlateExtractor(attributes.getValue(0)));
-                if (fileIsUnique || "false".equals(Mainthread.uniqueFileNames)) {
+                if (fileIsUnique | !Mainthread.uniqueFileNames) {
 
-                    if (isHTML && "true".equals(Mainthread.includeHTML)) {
+                    if (isHTML && Mainthread.includeHTML) {
                         extractedText = new BoilerPlateExtractor(attributes.getValue(0)).run();
 //                        pool.execute(new WorkerThread(extractedText));
                         WorkerThread(extractedText);
                     }
-                    if (isPDF && "true".equals(Mainthread.includePDF)) {
+                    if (isPDF && Mainthread.includePDF) {
                         extractedText = new PdfExtractor(attributes.getValue(0)).run();
 //                        pool.execute(new WorkerThread(extractedText));
                         WorkerThread(extractedText);
@@ -162,41 +181,47 @@ public class ParserXML extends DefaultHandler {
 
     }
 
+    @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
 
-        if (newTitle) {
-//            tempVal = tempVal + new String(ch, start, length);
-
-            test.append(ch, start, length);
+        if (newTitle & Mainthread.titlesIncluded) {
+            titleBuilder.append(ch, start, length);
 
         }
 
-        if (newAbstract) {
-//            tempVal = tempVal + new String(ch, start, length);
-            test.append(ch, start, length);
+        if (newAbstract & Mainthread.abstractsIncluded) {
+            abstractBuilder.append(ch, start, length);
         }
+
+        if (newSubject & Mainthread.subjectsIncluded) {
+            subjectBuilder.append(ch, start, length);
+        }
+
+        if (newAuthor & Mainthread.authorsIncluded) {
+            authorBuilder.append(ch, start, length);
+        }
+
 
     }
 
+    @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
 
 
-        if (qName.equalsIgnoreCase("dcterms:abstract") && test != null) {
-//            tempVal = tempVal.substring(4);
-            //System.out.println(tempVal);
-            //pool.execute(new WorkerThread(tempVal));
-            pool.execute(new WorkerThread(test.toString()));
+        if (qName.equalsIgnoreCase("dcterms:abstract") & abstractBuilder != null & Mainthread.abstractsIncluded) {
+            documentBuilder.append(abstractBuilder.toString()).append("|");
+            //System.out.println("documentBuilder so far is: " + documentBuilder.toString());
             newAbstract = false;
         }
 
-        if (qName.equalsIgnoreCase("dc:title") && test != null) {
-//            tempVal = tempVal.substring(4);
-//            pool.execute(new WorkerThread(tempVal));
-            pool.execute(new WorkerThread(test.toString()));
+        if (qName.equalsIgnoreCase("dc:title") & titleBuilder != null & Mainthread.titlesIncluded) {
+            documentBuilder.append(titleBuilder.toString()).append("|");
+            //System.out.println("documentBuilder so far is: " + documentBuilder.toString());
             newTitle = false;
         }
 
-        if (qName.matches("z:Attachment")) {
+        if (qName.matches("z:Attachment") & Mainthread.attachmentsIncluded) {
+            //documentBuilder.append(attachmentBuilder.toString()).append("|");
             newAttachment = false;
 
         }
@@ -207,18 +232,45 @@ public class ParserXML extends DefaultHandler {
         }
 
 
+        if (qName.matches("dc:subject") & Mainthread.subjectsIncluded) {
+            if (subjectBuilder.toString().contains(",")) {
+                System.out.println("subject is: " + subjectBuilder.toString());
+                documentBuilder.append(subjectBuilder.toString()).append("|");
+                //System.out.println("documentBuilder so far is: " + documentBuilder.toString());
+
+            }
+            newSubject = false;
+        }
+
+        if (qName.matches("foaf:surname") & Mainthread.authorsIncluded) {
+            System.out.println("author is: " + authorBuilder.toString());
+            documentBuilder.append(authorBuilder.toString()).append("|");
+            //System.out.println("documentBuilder so far is: " + documentBuilder.toString());
+
+            newAuthor = false;
+        }
+
+        if (qName.contains("bib:authors") & !newIsPartOf & documentBuilder != null) {
+            System.out.println("qName is: "+qName);
+            System.out.println("localName is: "+localName);
+            System.out.println("whole documentBuilder is: " + documentBuilder.toString());
+            pool.execute(new WorkerThread(documentBuilder.toString()));
+            newDocument = false;
+        }
+
+
 
     }
 
     public void WorkerThread(String extractedText) {
         try {
-           extractedText = extractedText.replace("&", " and ");
+            extractedText = extractedText.replace("&", " and ");
             extractedText = extractedText.replace("<", " ");
             extractedText = extractedText.replace(">", " ");
             extractedText = extractedText.replaceAll("\n", "thisisanendofsentence");
             extractedText = extractedText.replaceAll("\\p{C}", " ");
             extractedText = extractedText.replaceAll("thisisanendofsentence", "\n");
-            
+
             StringBuilder filteredText = new StringBuilder();
             StringBuilder incipitLines = new StringBuilder();
 
@@ -248,7 +300,7 @@ public class ParserXML extends DefaultHandler {
 
                 String currLine = it1.next().trim();
                 if (!currLine.matches(".*\\w.*")) {
-                                    
+
                     continue;
                 }
 
@@ -260,12 +312,12 @@ public class ParserXML extends DefaultHandler {
 //                    System.out.println("currLine is:\""+currLine+"\"");
 //                    System.out.println(countLines+" / "+lines.size());
 //            }
-                
+
                 if ((!"null".equals(Mainthread.stopWordsFile) & Mainthread.badLinesSet.contains(currLine))) {
 //                        System.out.println("line ignored but continuing the loop!"); 
-                        continue;
-                    }
-                
+                    continue;
+                }
+
 //
 //                    Iterator<String> it2 = Mainthread.badLines.iterator();
 //                    //badLineDetected = false;
@@ -300,8 +352,8 @@ public class ParserXML extends DefaultHandler {
                     newItemInCorpus = Mainthread.incipit.add(incipitLines.toString().substring(0, indexEndString));
 
                     if (!newItemInCorpus) {
-                        System.out.println("breaking because duplicate found with incipit!"); 
-                        System.out.println("incipit was was: "+incipitLines.toString().substring(0, indexEndString)); 
+                        System.out.println("breaking because duplicate found with incipit!");
+                        System.out.println("incipit was: " + incipitLines.toString().substring(0, indexEndString));
                         return;
                     }
 
@@ -316,9 +368,9 @@ public class ParserXML extends DefaultHandler {
 
             newLongestSentence = Mainthread.longestLines.add(longestString);
             if (!newLongestSentence) {
-            System.out.println("breaking because duplicate found with longest sentence!"); 
-            System.out.println("longest line was: "+longestString); 
-            
+                System.out.println("breaking because duplicate found with longest sentence!");
+                System.out.println("longest line was: " + longestString);
+
                 return;
             }
 
@@ -347,8 +399,4 @@ public class ParserXML extends DefaultHandler {
             Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
-
-
 }

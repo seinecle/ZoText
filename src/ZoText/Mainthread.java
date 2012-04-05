@@ -44,20 +44,21 @@ public class Mainthread {
     static HashSet<String> badLinesSet = new HashSet();
     static HashSet<String> longestLines = new HashSet();
     static String wkDir;
-    static String uniqueFileNames;
-    static String includeHTML;
-    static String includePDF;
-    static String abstractsIncluded;
-    static String titlesIncluded;
-    static String attachmentsIncluded;
+    static Boolean uniqueFileNames;
+    static Boolean includeHTML;
+    static Boolean includePDF;
+    static Boolean abstractsIncluded;
+    static Boolean titlesIncluded;
+    static Boolean attachmentsIncluded;
+    static Boolean subjectsIncluded;
+    static Boolean authorsIncluded;
     static ParserXML Pxml;
     static BufferedWriter output;
     private static BufferedWriter bf;
     static ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue();
-    private static Component frame;
-    private static String currLine;
-    private static Multiset<String> freqSet = HashMultiset.create();
-    private static List<Entry<String>> freqList;
+
+    public static String fileResultsName;
+
 
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
 
@@ -65,20 +66,26 @@ public class Mainthread {
             wkDir = args[3];
             stopWordsFile = args[4];
             System.out.println("stopWordsFile: "+stopWordsFile);
-            XMLOutput = wkDir + "\\ZoteroText.txt";
+            XMLOutput = wkDir + "\\"+args[9];
             System.out.println("XML Output: "+XMLOutput);
-            uniqueFileNames = args[2];
+            uniqueFileNames = Boolean.valueOf(args[2]);
             System.out.println("uniqueFileNames: "+uniqueFileNames);
-            includeHTML = args[0];
+            includeHTML = Boolean.valueOf(args[0]);
             System.out.println("include HTML: "+includeHTML);
-            includePDF = args[1];
+            includePDF = Boolean.valueOf(args[1]);
             System.out.println("include PDF: "+includePDF);
-            abstractsIncluded = args[5];
+            abstractsIncluded = Boolean.valueOf(args[5]);
             System.out.println("abstracts included: "+abstractsIncluded);
-            titlesIncluded = args[6];
+            titlesIncluded = Boolean.valueOf(args[6]);
             System.out.println("titles included: "+titlesIncluded);
-            attachmentsIncluded = args[7];
+            attachmentsIncluded = Boolean.valueOf(args[7]);
             System.out.println("attachmenents included: "+attachmentsIncluded);
+            subjectsIncluded = Boolean.valueOf(args[8]);
+            System.out.println("subjects included: "+subjectsIncluded);
+            fileResultsName = args[9];
+            System.out.println("name of the file for results: "+ fileResultsName);
+            authorsIncluded = Boolean.valueOf(args[10]);
+            System.out.println("authors included: "+ authorsIncluded);
 
             if (!"null".equals(stopWordsFile)) {
                 //badLines = Mainthread.buildStopWordList();

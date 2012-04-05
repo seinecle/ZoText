@@ -67,6 +67,10 @@ public class Screen_1 extends javax.swing.JFrame {
         launch = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         onlyOneDocContent = new javax.swing.JCheckBox();
+        keyWordsBox = new javax.swing.JCheckBox();
+        jLabel9 = new javax.swing.JLabel();
+        nameFileResults = new javax.swing.JTextField();
+        authorsBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,6 +154,19 @@ public class Screen_1 extends javax.swing.JFrame {
             }
         });
 
+        keyWordsBox.setText("Tags (keywords)");
+
+        jLabel9.setText("5. Name of the file created for the results:");
+
+        nameFileResults.setText("ZoText_results.txt");
+        nameFileResults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFileResultsActionPerformed(evt);
+            }
+        });
+
+        authorsBox.setText("authors");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,6 +174,11 @@ public class Screen_1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(authorsBox)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(nameFileResults, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
@@ -174,19 +196,21 @@ public class Screen_1 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(ChooseTitles)
                         .addGap(18, 18, 18)
-                        .addComponent(ChooseAbstracts))
+                        .addComponent(ChooseAbstracts)
+                        .addGap(54, 54, 54)
+                        .addComponent(keyWordsBox))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(htmlInclude)
-                        .addGap(91, 91, 91)
-                        .addComponent(pdfInclude)
-                        .addGap(93, 93, 93)
-                        .addComponent(onlyOneDocContent))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(selectFileStop)))
-                .addContainerGap(124, Short.MAX_VALUE))
+                        .addComponent(selectFileStop))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(htmlInclude)
+                        .addGap(18, 18, 18)
+                        .addComponent(pdfInclude)
+                        .addGap(18, 18, 18)
+                        .addComponent(onlyOneDocContent)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,8 +229,11 @@ public class Screen_1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ChooseAttachments)
                     .addComponent(ChooseTitles)
-                    .addComponent(ChooseAbstracts))
-                .addGap(48, 48, 48)
+                    .addComponent(ChooseAbstracts)
+                    .addComponent(keyWordsBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(authorsBox)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -219,7 +246,11 @@ public class Screen_1 extends javax.swing.JFrame {
                     .addComponent(selectFileStop))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(nameFileResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(launch))
@@ -314,7 +345,7 @@ public class Screen_1 extends javax.swing.JFrame {
                 try {
                     System.out.println(String.valueOf(countHTML));
                     String[] args;
-                    args = new String[8];
+                    args = new String[11];
                     args[0] = String.valueOf(countHTML);
                     args[1] = String.valueOf(countPDF);
                     args[2] = String.valueOf(countOneDocContent);
@@ -322,6 +353,9 @@ public class Screen_1 extends javax.swing.JFrame {
                     args[5] = String.valueOf(ChooseAbstractsYes);
                     args[6] = String.valueOf(ChooseTitlesYes);
                     args[7] = String.valueOf(ChooseAttachmentsYes);
+                    args[8] = String.valueOf(keyWordsBox.isSelected());
+                    args[9] = nameFileResults.getText();
+                    args[10] = String.valueOf(authorsBox.isSelected());
 
                     if (stopwordsFileSelected) {
 
@@ -352,6 +386,10 @@ public class Screen_1 extends javax.swing.JFrame {
             System.out.println("exclusion of duplicate documents: "+countOneDocContent);            
         }
     }//GEN-LAST:event_onlyOneDocContentActionPerformed
+
+    private void nameFileResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFileResultsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFileResultsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,6 +430,7 @@ public class Screen_1 extends javax.swing.JFrame {
     private javax.swing.JCheckBox ChooseAbstracts;
     private javax.swing.JCheckBox ChooseAttachments;
     private javax.swing.JCheckBox ChooseTitles;
+    private javax.swing.JCheckBox authorsBox;
     private javax.swing.JCheckBox htmlInclude;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -401,7 +440,10 @@ public class Screen_1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    public javax.swing.JCheckBox keyWordsBox;
     private javax.swing.JButton launch;
+    private javax.swing.JTextField nameFileResults;
     private javax.swing.JCheckBox onlyOneDocContent;
     private javax.swing.JCheckBox pdfInclude;
     private javax.swing.JButton selectFileBiblio;
