@@ -50,86 +50,49 @@ public class Screen_1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        selectFileBiblio = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        ChooseAttachments = new javax.swing.JCheckBox();
-        ChooseTitles = new javax.swing.JCheckBox();
-        ChooseAbstracts = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        htmlInclude = new javax.swing.JCheckBox();
-        pdfInclude = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        keyWordsBox = new javax.swing.JCheckBox();
+        authorsBox = new javax.swing.JCheckBox();
+        jLabel10 = new javax.swing.JLabel();
+        onlyOneDocContent = new javax.swing.JCheckBox();
+        selectFileStop = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        selectFileStop = new javax.swing.JButton();
-        launch = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        onlyOneDocContent = new javax.swing.JCheckBox();
-        keyWordsBox = new javax.swing.JCheckBox();
+        htmlInclude = new javax.swing.JCheckBox();
+        pdfInclude = new javax.swing.JCheckBox();
+        selectFileBiblio = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        ChooseAttachments = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        ChooseAbstracts = new javax.swing.JCheckBox();
+        ChooseTitles = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
         nameFileResults = new javax.swing.JTextField();
-        authorsBox = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        launch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("<html><b>1.</b> Select your Zotero bibliography</html>");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        selectFileBiblio.setText("select");
-        selectFileBiblio.addActionListener(new java.awt.event.ActionListener() {
+        keyWordsBox.setBackground(new java.awt.Color(255, 255, 255));
+        keyWordsBox.setText("Tags (keywords)");
+
+        authorsBox.setBackground(new java.awt.Color(255, 255, 255));
+        authorsBox.setText("authors");
+
+        jLabel10.setText("creates a plain text version of your zotero bibliography");
+
+        onlyOneDocContent.setBackground(new java.awt.Color(255, 255, 255));
+        onlyOneDocContent.setText("detect and exclude duplicate attachments");
+        onlyOneDocContent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectFileBiblioActionPerformed(evt);
+                onlyOneDocContentActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("<html><i>Your Zotero bibliography is a file called \"My Library.rdf\" located on your computer. It was created when you exported your Zotero bibliography. If you did not export it yet, close this application and follow <a href=\"http://www.zotero.org/support/kb/exporting\">these steps</a> then come back here.</i></html>");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setText("ZoText");
-
-        jLabel4.setText("<html><b>2.</b> Select the type of textual content you want to extract from it</html>");
-
-        ChooseAttachments.setText("Attachments");
-        ChooseAttachments.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChooseAttachmentsActionPerformed(evt);
-            }
-        });
-
-        ChooseTitles.setText("Titles (of articles, books, etc.)");
-        ChooseTitles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChooseTitlesActionPerformed(evt);
-            }
-        });
-
-        ChooseAbstracts.setText("Abstracts");
-        ChooseAbstracts.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChooseAbstractsActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("<html><b>3.</b> If you selected \"Attachments\", you can select these additional options:</html>");
-
-        htmlInclude.setText("include webpages");
-        htmlInclude.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                htmlIncludeActionPerformed(evt);
-            }
-        });
-
-        pdfInclude.setText("include pdfs");
-        pdfInclude.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pdfIncludeActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("<html><b>4.</b> Optional: select a \"stopwords\" file</html>");
-
-        jLabel7.setText("<html><i>A stopwords file contains a list of words which you want to <u>exclude</u> from the output. To create one, just open a new text document (.txt) and write a single word per line. Technical remark: Regular expressions are permitted. Then, come back here and select it. You can see an example of stopwords file <a href=\"http://www.clementlevallois.net/ZoText/stopwords.txt\">here.</a></html>");
 
         selectFileStop.setText("select");
         selectFileStop.addActionListener(new java.awt.event.ActionListener() {
@@ -138,25 +101,69 @@ public class Screen_1 extends javax.swing.JFrame {
             }
         });
 
-        launch.setText("Launch");
-        launch.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setText("<html><b>4.</b> Optional: select a \"stopwords\" file</html>");
+
+        jLabel7.setText("<html><i>A stopwords file contains a list of words which you want to <u>exclude</u> from the output. To create one, just open a new text document (.txt) and write a single word per line. Technical remark: Regular expressions are permitted. Then, come back here and select it. You can see an example of stopwords file <a href=\"http://www.clementlevallois.net/ZoText/stopwords.txt\">here.</a></html>");
+
+        htmlInclude.setBackground(new java.awt.Color(255, 255, 255));
+        htmlInclude.setText("include webpages");
+        htmlInclude.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                launchActionPerformed(evt);
+                htmlIncludeActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("<html><b>5.</b> Launch ZoText</html>");
-
-        onlyOneDocContent.setText("detect and exclude duplicate attachments");
-        onlyOneDocContent.addActionListener(new java.awt.event.ActionListener() {
+        pdfInclude.setBackground(new java.awt.Color(255, 255, 255));
+        pdfInclude.setText("include pdfs");
+        pdfInclude.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onlyOneDocContentActionPerformed(evt);
+                pdfIncludeActionPerformed(evt);
             }
         });
 
-        keyWordsBox.setText("Tags (keywords)");
+        selectFileBiblio.setText("select");
+        selectFileBiblio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectFileBiblioActionPerformed(evt);
+            }
+        });
 
-        jLabel9.setText("5. Name of the file created for the results:");
+        jLabel1.setText("<html><b>1.</b> Select your Zotero bibliography</html>");
+
+        jLabel5.setText("<html><b>3.</b> If you selected \"Attachments\", you can select these additional options:</html>");
+
+        ChooseAttachments.setBackground(new java.awt.Color(255, 255, 255));
+        ChooseAttachments.setText("Attachments");
+        ChooseAttachments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChooseAttachmentsActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("<html><b>2.</b> Select the type of textual content you want to extract from it</html>");
+
+        jLabel3.setFont(new java.awt.Font("Script MT Bold", 1, 48)); // NOI18N
+        jLabel3.setText("Zotext");
+
+        jLabel2.setText("<html><i>Your Zotero bibliography is a file called \"My Library.rdf\" located on your computer. It was created when you exported your Zotero bibliography. If you did not export it yet, close this application and follow <a href=\"http://www.zotero.org/support/kb/exporting\">these steps</a> then come back here.</i></html>");
+
+        ChooseAbstracts.setBackground(new java.awt.Color(255, 255, 255));
+        ChooseAbstracts.setText("Abstracts");
+        ChooseAbstracts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChooseAbstractsActionPerformed(evt);
+            }
+        });
+
+        ChooseTitles.setBackground(new java.awt.Color(255, 255, 255));
+        ChooseTitles.setText("Titles (of articles, books, etc.)");
+        ChooseTitles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChooseTitlesActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("<html><b>5.</b> Name of the file created for the results:</html>");
 
         nameFileResults.setText("ZoText_results.txt");
         nameFileResults.addActionListener(new java.awt.event.ActionListener() {
@@ -165,60 +172,74 @@ public class Screen_1 extends javax.swing.JFrame {
             }
         });
 
-        authorsBox.setText("authors");
+        jLabel8.setText("<html><b>6.</b> Launch ZoText</html>");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(authorsBox)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+        launch.setText("Launch");
+        launch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                launchActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(nameFileResults, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(launch))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(selectFileBiblio))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ChooseAttachments)
-                        .addGap(18, 18, 18)
-                        .addComponent(ChooseTitles)
-                        .addGap(18, 18, 18)
-                        .addComponent(ChooseAbstracts)
-                        .addGap(54, 54, 54)
-                        .addComponent(keyWordsBox))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(selectFileStop))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(htmlInclude)
-                        .addGap(18, 18, 18)
-                        .addComponent(pdfInclude)
-                        .addGap(18, 18, 18)
-                        .addComponent(onlyOneDocContent)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(authorsBox)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(selectFileBiblio))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(ChooseAttachments)
+                                .addGap(18, 18, 18)
+                                .addComponent(ChooseTitles)
+                                .addGap(18, 18, 18)
+                                .addComponent(ChooseAbstracts)
+                                .addGap(54, 54, 54)
+                                .addComponent(keyWordsBox))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(selectFileStop))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(htmlInclude)
+                                .addGap(18, 18, 18)
+                                .addComponent(pdfInclude)
+                                .addGap(18, 18, 18)
+                                .addComponent(onlyOneDocContent)))))
+                .addGap(0, 55, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addGap(62, 62, 62)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectFileBiblio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -226,7 +247,7 @@ public class Screen_1 extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ChooseAttachments)
                     .addComponent(ChooseTitles)
                     .addComponent(ChooseAbstracts)
@@ -236,25 +257,38 @@ public class Screen_1 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(htmlInclude)
                     .addComponent(pdfInclude)
                     .addComponent(onlyOneDocContent))
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectFileStop))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameFileResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(launch))
-                .addContainerGap())
+                .addGap(15, 15, 15))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -433,6 +467,7 @@ public class Screen_1 extends javax.swing.JFrame {
     private javax.swing.JCheckBox authorsBox;
     private javax.swing.JCheckBox htmlInclude;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -441,6 +476,7 @@ public class Screen_1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JCheckBox keyWordsBox;
     private javax.swing.JButton launch;
     private javax.swing.JTextField nameFileResults;
